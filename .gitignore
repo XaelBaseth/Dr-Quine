@@ -3,6 +3,12 @@ Colleen
 Grace
 Sully
 
+# Clion
+cmake-build-debug
+.clang-tidy
+CMakeLists.txt
+.idea
+
 # Prerequisites
 *.d
 

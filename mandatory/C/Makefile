@@ -1,6 +1,6 @@
 MAKEFLAGS    += --silent
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Rules
 
@@ -10,7 +10,7 @@ Colleen: Colleen.c
 	$(CC) $(CFLAGS) $< -o $@
 
 test_Colleen: Colleen
-	clang $(CFLAGS) -o Colleen Colleen.c; ./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
+	$(CC) $(CFLAGS) -o Colleen Colleen.c; ./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
 
 Grace: Grace.c
 	$(CC) $(CFLAGS) $< -o $@
