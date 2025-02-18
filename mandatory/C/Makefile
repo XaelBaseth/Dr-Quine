@@ -1,4 +1,4 @@
-MAKEFLAGS   += --silent
+#MAKEFLAGS   += --silent
 CC 			= clang
 CFLAGS 		= -Wall -Wextra -Werror -g
 
@@ -10,16 +10,22 @@ Colleen: Colleen.c
 	$(CC) $(CFLAGS) $< -o $@
 
 test_Colleen: Colleen
-	$(CC) $(CFLAGS) -o Colleen Colleen.c; ./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
+	./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
 
 Grace: Grace.c
 	$(CC) $(CFLAGS) $< -o $@
 
+test_Grace: Grace
+	./Grace; diff Grace.c Grace_kid.c
+
 Sully: Sully.c
 	$(CC) $(CFLAGS) $< -o $@
 
+test_Sully: Sully
+	./Sully
+
 clean:
-	$(RM) Colleen Grace Sully tmp_Colleen
+	$(RM) Colleen Grace Sully tmp_Colleen Grace_kid.c Sully_*
 
 fclean:
 	@make clean
@@ -27,4 +33,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test_Colleen test_Grace

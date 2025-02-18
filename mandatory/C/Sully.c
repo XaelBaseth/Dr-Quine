@@ -1,0 +1,5 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+int main(void){int i=5;char file[15]; char name[15]; char *s="#include <stdio.h>%c#include <string.h>%c#include <stdlib.h>%c#include <unistd.h>%cint main(void){int i=5;char file[15];char name[15];if (i+1){if(access(%cSully_5.c%c, R_OK)!=-1)i--;strcat(file, %cSully_%c);file[6]=i+48;file[7]=0;strcpy(name,file);strcat(file, %c.c%c);void*fd=fopen(file,%cw%c);fprintf(fd, s, 10, 10, 10, 10, 34, 34, 34, 34, i, 34, 34, 34, 34, s,34, 34, 10);fclose(fd);char cmd[500];sprintf(cmd, %cgcc -o %s %s && ./%s%c, name, file, name);if(i)system(cmd);}}%c";if (i+1){if(access("Sully_5.c", R_OK)!=-1)i--;strcat(file, "Sully_");file[6]=i+48;file[7]=0;strcpy(name,file);strcat(file, ".c");void*fd=fopen(file,"w");fprintf(fd, s, 10, 10, 10, 10, 34, 34, 34, 34, i, 34, 34, 34, 34, s,34, 34, 10);fclose(fd);char cmd[500];sprintf(cmd, "gcc -o %s %s && ./%s", name, file, name);if(i)system(cmd);}}
