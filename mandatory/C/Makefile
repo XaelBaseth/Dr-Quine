@@ -1,6 +1,6 @@
-MAKEFLAGS    += --silent
-CC = clang
-CFLAGS = -Wall -Wextra -Werror -g
+MAKEFLAGS   += --silent
+CC 			= clang
+CFLAGS 		= -Wall -Wextra -Werror -g
 
 # Rules
 
