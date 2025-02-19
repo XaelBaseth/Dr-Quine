@@ -1,9 +1,8 @@
-#MAKEFLAGS   += --silent
+MAKEFLAGS   += --silent
 CC 			= clang
 CFLAGS 		= -Wall -Wextra -Werror -g
 
 # Rules
-
 all: Colleen Grace Sully
 
 Colleen: Colleen.c
@@ -25,7 +24,7 @@ test_Sully: Sully
 	./Sully
 
 clean:
-	$(RM) Colleen Grace Sully tmp_Colleen Grace_kid.c Sully_*
+	$(RM) tmp_Colleen Grace_kid.c Sully_*
 
 fclean:
 	@make clean
@@ -33,4 +32,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re test_Colleen test_Grace
+.PHONY: all clean fclean re test_Colleen test_Grace test_Sully
