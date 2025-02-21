@@ -2,29 +2,44 @@ MAKEFLAGS   += --silent
 CC 			= clang
 CFLAGS 		= -Wall -Wextra -Werror -g
 
+COLLEEN_SRC	= Colleen.c
+GRACE_SRC	= Grace.c
+SULLY_SRC	= Sully.c
+
+COLLEEN		= Colleen
+GRACE		= Grace
+SULLY		= Sully
+
+COLLEEN_OBJ	= $(COLLEEN_SRC:.c=.o)
+GRACE_OBJ	= $(GRACE_SRC:.c=.o)
+SULLY_OBJ	= $(SULLY_SRC:.c=.o)
+
 # Rules
+%.o: %.s
+	$(CC) $(CFLAGS) $<
+
 all: Colleen Grace Sully
 
-Colleen: Colleen.c
-	$(CC) $(CFLAGS) $< -o $@
+Colleen: $(COLLEEN_OBJ)
+	$(CC) $(COLLEEN_OBJ) -o $(COLLEEN)
 
 test_Colleen: Colleen
 	./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
 
-Grace: Grace.c
-	$(CC) $(CFLAGS) $< -o $@
+Grace: $(GRACE_OBJ)
+	$(CC) $(GRACE_OBJ) -o $(GRACE)
 
 test_Grace: Grace
 	./Grace; diff Grace.c Grace_kid.c
 
-Sully: Sully.c
-	$(CC) $(CFLAGS) $< -o $@
+Sully: $(SULLY_OBJ)
+	$(CC) $(SULLY_OBJ) -o $(SULLY)
 
 test_Sully: Sully
 	./Sully
 
 clean:
-	$(RM) tmp_Colleen Grace_kid.c Sully_*
+	$(RM) Colleen.o Grace.o Sully.o tmp_Colleen Grace_kid.c Sully_*
 
 fclean:
 	@make clean
