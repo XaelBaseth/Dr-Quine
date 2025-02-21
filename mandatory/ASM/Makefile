@@ -22,10 +22,10 @@ SULLY_OBJ	= $(SULLY_SRC:.s=.o)
 all: Colleen Grace Sully
 
 Colleen: $(COLLEEN_OBJ)
-	$(CC) $(CCFLAGS) $()$(COLLEEN_OBJ) -o $(COLLEEN)
+	$(CC) $(CCFLAGS) $(COLLEEN_OBJ) -o $(COLLEEN)
 
 test_Colleen: Colleen
-	./Colleen > tmp_Colleen ; diff --color=auto tmp_Colleen Colleen.s
+	./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.s
 
 Grace: $(GRACE_OBJ)
 	$(CC) $(GRACE_OBJ) -o $(GRACE)
