@@ -25,7 +25,7 @@ Colleen: $(COLLEEN_OBJ)
 	$(CC) $(CCFLAGS) $(COLLEEN_OBJ) -o $(COLLEEN)
 
 test_Colleen: Colleen
-	@./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.s
+	@./Colleen > tmp_Colleen ; diff tmp_Colleen $(COLLEEN_SRC)
 
 Grace: $(GRACE_OBJ)
 	$(CC) $(CCFLAGS) $(GRACE_OBJ) -o $(GRACE)
@@ -44,7 +44,7 @@ clean:
 
 fclean:
 	@make clean
-	$(RM) Colleen Grace Sully
+	$(RM) $(COLLEEN) $(GRACE) $(SULLY)
 
 re: fclean all
 

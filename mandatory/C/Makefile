@@ -24,13 +24,13 @@ Colleen: $(COLLEEN_OBJ)
 	$(CC) $(COLLEEN_OBJ) -o $(COLLEEN)
 
 test_Colleen: Colleen
-	./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.c
+	./Colleen > tmp_Colleen ; diff tmp_Colleen $(COLLEEN_SRC)
 
 Grace: $(GRACE_OBJ)
 	$(CC) $(GRACE_OBJ) -o $(GRACE)
 
 test_Grace: Grace
-	./Grace; diff Grace.c Grace_kid.c
+	./Grace; diff $(GRACE_SRC) Grace_kid.c
 
 Sully: $(SULLY_OBJ)
 	$(CC) $(SULLY_OBJ) -o $(SULLY)
@@ -43,7 +43,7 @@ clean:
 
 fclean:
 	@make clean
-	$(RM) Colleen Grace Sully
+	$(RM) $(COLLEEN) $(GRACE) $(SULLY)
 
 re: fclean all
 
