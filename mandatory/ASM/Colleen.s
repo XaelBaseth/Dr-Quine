@@ -1,27 +1,25 @@
-; One comment
-
-section .data
-file_content:
-	db "; One comment%2$c%2$csection .data%2$cfile_content:%2$c%4$cdb %3$c%1$s%3$c, 0%2$c%2$csection .text%2$c%4$cglobal main%2$c%4$cextern printf%2$c%2$cstart:%2$c%4$ccall main%2$c%4$cret%2$c%2$cmain:%2$c%4$c; Other comment%2$c%4$cpush rbp%2$c%4$cmov rbp, rsp%2$c%4$clea rdi, [rel file_content]%2$c%4$clea rsi, [rel file_content]%2$c%4$cmov rdx, 10%2$c%4$cmov rcx, 34%2$c%4$cmov r8, 9%2$c%4$ccall printf%2$c%4$cmov rsp, rbp%2$c%4$cpop rbp%2$c%4$cret%2$c", 0
-
+; This program will print its own source when run.
 section .text
-	global main
-	extern printf
-
-start:
-	call main
+default rel
+extern printf
+extern fflush
+global _start
+nl:
+	; Returns the NEWLINE char
+	mov rax,10
 	ret
-
-main:
-	; Other comment
-	push rbp
-	mov rbp, rsp
-	lea rdi, [rel file_content]
-	lea rsi, [rel file_content]
-	mov rdx, 10
+_start:
+	call nl
+	mov rdx, rax
+	mov rsi, v
+	mov rdi, v
+	mov rdx, rax
 	mov rcx, 34
-	mov r8, 9
 	call printf
-	mov rsp, rbp
-	pop rbp
-	ret
+	xor rdi, rdi
+	call fflush
+	mov rax, 60
+	mov rdi, 0
+	syscall
+section .data
+v: db "; This program will print its own source when run.%2$csection .text%2$cdefault rel%2$cextern printf%2$cextern fflush%2$cglobal _start%2$cnl:%2$c	; Returns the NEWLINE char%2$c	mov rax,10%2$c	ret%2$c_start:%2$c	call nl%2$c	mov rdx, rax%2$c	mov rsi, v%2$c	mov rdi, v%2$c	mov rdx, rax%2$c	mov rcx, 34%2$c	call printf%2$c	xor rdi, rdi%2$c	call fflush%2$c	mov rax, 60%2$c	mov rdi, 0%2$c	syscall%2$csection .data%2$cv: db %3$c%1$s%3$c,0%2$c",0

@@ -1,8 +1,8 @@
 MAKEFLAGS	+= --silent
-CC 			= gcc
-CCFLAGS		= -no-pie
+CC 			= ld
+CCFLAGS		= -dynamic-linker /lib64/ld-linux-x86-64.so.2 -lc
 AS 			= nasm
-ASFLAGS 	= -f elf64
+ASFLAGS 	= -felf64
 
 COLLEEN_SRC	= Colleen.s
 GRACE_SRC	= Grace.s
@@ -25,22 +25,22 @@ Colleen: $(COLLEEN_OBJ)
 	$(CC) $(CCFLAGS) $(COLLEEN_OBJ) -o $(COLLEEN)
 
 test_Colleen: Colleen
-	./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.s
+	@./Colleen > tmp_Colleen ; diff tmp_Colleen Colleen.s
 
 Grace: $(GRACE_OBJ)
-	$(CC) $(GRACE_OBJ) -o $(GRACE)
+	$(CC) $(CCFLAGS) $(GRACE_OBJ) -o $(GRACE)
 
 test_Grace: Grace
 	./Grace; diff Grace.s Grace_kid.s
 
 Sully: $(SULLY_OBJ)
-	$(CC) $(SULLY_OBJ) -o $(SULLY)
+	$(CC) $(CCFLAGS) $(SULLY_OBJ) -o $(SULLY)
 
 test_Sully: Sully
 	./Sully
 
 clean:
-	$(RM) Colleen.o Grace.o Sully.o tmp_Colleen Grace_kid.c Sully_*
+	$(RM) Colleen.o Grace.o Sully.o tmp_Colleen Grace_kid.s Sully_*
 
 fclean:
 	@make clean
@@ -48,4 +48,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean re
+.PHONY: all clean re Colleen test_Colleen Grace test_Grace test_Sully Sully
