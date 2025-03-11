@@ -2,7 +2,16 @@
 /*
 This is an external comment
 */
-void function(char*s){/*
+
+void function(char*s) {
+printf(s, 10, 34, s);
+}
+
+int main(void) {
+/*
 This is a comment inside the function
-*/printf(s, 10, 10, 10, 10, 10, 10, 10, 34, s, 34, 10, 10);}
-int main(void){char*s="#include <stdio.h>%c/*%cThis is an external comment%c*/%cvoid function(char*s){/*%cThis is a comment inside the function%c*/printf(s, 10, 10, 10, 10, 10, 10, 10, 34, s, 34, 10, 10);}%cint main(void){char*s=%c%s%c;function(s);return 0;}%c";function(s);return 0;}
+*/
+char*s="#include <stdio.h>%1$c/*%1$cThis is an external comment%1$c*/%1$c%1$cvoid function(char*s) {%1$cprintf(s, 10, 34, s);%1$c}%1$c%1$cint main(void) {%1$c/*%1$cThis is a comment inside the function%1$c*/%1$cchar*s=%2$c%3$s%2$c;%1$cfunction(s);%1$creturn 0;%1$c}%1$c";
+function(s);
+return 0;
+}
