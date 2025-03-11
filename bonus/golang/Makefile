@@ -21,7 +21,7 @@ Grace:
 	$(GOBUILD) $(GRACE_SRC)
 
 test_Grace: Grace
-	./Grace; diff $(GRACE_SRC) Grace_kid.c
+	./Grace; diff $(GRACE_SRC) Grace_kid.go
 
 Sully:
 	$(GOBUILD) $(SULLY_SRC)
