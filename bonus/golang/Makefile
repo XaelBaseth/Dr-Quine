@@ -30,7 +30,7 @@ test_Sully: Sully
 	./Sully
 
 clean:
-	$(RM) tmp_Colleen Grace_kid.c Sully_*
+	$(RM) tmp_Colleen Grace_kid.go Sully_*
 
 fclean:
 	@make clean
