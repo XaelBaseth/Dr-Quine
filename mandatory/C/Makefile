@@ -13,7 +13,7 @@ SULLY		= Sully
 COLLEEN_OBJ	= $(COLLEEN_SRC:.c=.o)
 GRACE_OBJ	= $(GRACE_SRC:.c=.o)
 SULLY_OBJ	= $(SULLY_SRC:.c=.o)
-
+make
 # Rules
 %.o: %.s
 	$(CC) $(CFLAGS) $<
